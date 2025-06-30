@@ -6,20 +6,20 @@ on:
       - main
   workflow_dispatch:
 
-concurrency:
-  group: release-production
-
 jobs:
-  deploy-services:
-    environment:
-      name: production
-    name: Deploy 
-    runs-on: ubuntu-latest
+  prepare:
     steps:
       - uses: styfle/cancel-workflow-action@0.12.1
         with:
           only_status: 'waiting'
           workflow_id: deploy.yaml
+  deploy-services:
+    needs: [ prepare ]
+    environment:
+      name: production
+    name: Deploy 
+    runs-on: ubuntu-latest
+    steps:
       - run: |
           echo "Waiting 3min"
           sleep 180
