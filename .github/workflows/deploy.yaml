@@ -9,13 +9,10 @@ on:
 jobs:
   prepare:
     runs-on: ubuntu-latest
-    permissions:
-      actions: write
     steps:
       - uses: styfle/cancel-workflow-action@0.12.1
         with:
           only_status: 'waiting'
-          workflow_id: ${{ github.event.workflow.id }}
   deploy-services:
     needs: [ prepare ]
     environment:
