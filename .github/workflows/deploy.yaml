@@ -32,7 +32,7 @@ jobs:
 
   notify-cancel:
     needs: [prepare, deploy-services]
-    if: cancelled()
+    if: cancelled() && needs.prepare.outputs.test
     runs-on: ubuntu-latest
     steps:
       - run: |
