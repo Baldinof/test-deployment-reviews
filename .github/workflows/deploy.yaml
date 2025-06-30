@@ -16,6 +16,10 @@ jobs:
     name: Deploy 
     runs-on: ubuntu-latest
     steps:
+      - uses: styfle/cancel-workflow-action
+        with:
+          only_status: 'waiting'
+          workflow_id: deploy.yaml
       - run: |
           echo "Waiting 3min"
           sleep 180
