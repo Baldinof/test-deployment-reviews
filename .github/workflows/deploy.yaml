@@ -32,5 +32,5 @@ jobs:
     if: cancelled()
     runs-on: ubuntu-latest
     steps:
-      - run: Job has been cancelled!
+      - run: echo Job has been cancelled!
 
