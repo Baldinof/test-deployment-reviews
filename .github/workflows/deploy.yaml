@@ -36,4 +36,5 @@ jobs:
     if: cancelled()
     runs-on: ubuntu-latest
     steps:
-      - run: echo Job has been cancelled: ${{ needs.prepare.outputs.test }} 
+      - run: |
+          echo Job has been cancelled: ${{ needs.prepare.outputs.test }} 
