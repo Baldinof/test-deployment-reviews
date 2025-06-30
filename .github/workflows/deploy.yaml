@@ -11,10 +11,13 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       actions: write
+    outputs:
+      test: hello
     steps:
       - uses: styfle/cancel-workflow-action@0.12.1
         with:
           only_status: 'waiting'
+      
   deploy-services:
     needs: [ prepare ]
     environment:
@@ -28,9 +31,8 @@ jobs:
           echo "Done"
 
   notify-cancel:
-    needs: [deploy-services]
+    needs: [prepare, deploy-services]
     if: cancelled()
     runs-on: ubuntu-latest
     steps:
-      - run: echo Job has been cancelled!
-
+      - run: echo Job has been cancelled: ${{ needs.prepare.outputs.test }} 
