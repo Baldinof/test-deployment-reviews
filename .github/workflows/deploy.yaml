@@ -6,11 +6,6 @@ on:
       - main
   workflow_dispatch:
 
-concurrency:
-  group: release-production
-  cancel-in-progress: true
-
-
 jobs:
   deploy-services:
     environment:
