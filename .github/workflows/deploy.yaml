@@ -37,3 +37,11 @@ jobs:
     steps:
       - run: |
           echo Job has been cancelled: ${{ needs.prepare.outputs.test }} 
+
+  notify-error:
+    needs: [prepare, deploy-services]
+    if: failure()
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo Job has errored: ${{ needs.deploy-services.conclusion }} 
