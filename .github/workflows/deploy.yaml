@@ -26,3 +26,11 @@ jobs:
           echo "Waiting 3min"
           sleep 180
           echo "Done"
+
+  notify-cancel:
+    needs: [deploy-services]
+    if: cancelled()
+    runs-on: ubuntu-latest
+    steps:
+      - run: Job has been cancelled!
+
